@@ -100,15 +100,23 @@ h1, h2 {
 /* OUTPUT BOX */
 pre {
   margin-top: 20px;
-  padding: 20px;
-  background: #111;
-  border-radius: 10px;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
   max-width: 90%;
   margin-left: auto;
   margin-right: auto;
+  box-shadow: none;
+  white-space: normal;
+}
 
-  box-shadow: 0 0 15px #ff00ff;
-  white-space: pre-wrap;
+pre #quizLink {
+  font-family: 'Courier New', monospace;
+}
+
+pre button:hover {
+  background: #5aaaff !important;
+  transform: scale(1.02);
 }
 
 
