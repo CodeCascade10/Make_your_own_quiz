@@ -1,8 +1,17 @@
 // Wait for DOM to be ready
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Get encoded quiz from URL
+    // Try multiple methods to get the quiz parameter
     const urlParams = new URLSearchParams(window.location.search);
     let encodedQuiz = urlParams.get("quiz");
+
+    // Fallback: if URLSearchParams doesn't work, try parsing the URL directly
+    if (!encodedQuiz) {
+        const urlMatch = window.location.search.match(/[?&]quiz=([^&]*)/);
+        if (urlMatch) {
+            encodedQuiz = urlMatch[1];
+        }
+    }
 
     // Check if quiz parameter exists
     if (!encodedQuiz) {
@@ -17,8 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // URLSearchParams.get() automatically decodes URL-encoded parameters
-    // So encodedQuiz should already be decoded and ready for Base64 decoding
-    // No additional decoding needed
+    // But we need to handle URL-safe Base64 encoding
 
     // 2. Decode Base64 → JSON with error handling
     let quizData;
@@ -28,10 +36,24 @@ document.addEventListener('DOMContentLoaded', () => {
             throw new Error('Empty quiz data');
         }
 
+        // Convert URL-safe Base64 back to standard Base64
+        // Replace - with +, _ with /, and add padding if needed
+        let base64String = encodedQuiz.replace(/-/g, '+').replace(/_/g, '/');
+
+        // Validate Base64 string format (should only contain A-Z, a-z, 0-9, +, /, =)
+        if (!/^[A-Za-z0-9+/=]+$/.test(base64String)) {
+            throw new Error('Invalid Base64 format detected. The quiz link may be corrupted.');
+        }
+
+        // Add padding if needed (Base64 strings should be multiples of 4)
+        while (base64String.length % 4) {
+            base64String += '=';
+        }
+
         // Decode Base64
         let decoded;
         try {
-            decoded = atob(encodedQuiz);
+            decoded = atob(base64String);
         } catch (base64Error) {
             throw new Error(`Base64 decoding failed: ${base64Error.message}. The quiz link may be corrupted.`);
         }

@@ -59,15 +59,16 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Encode into Base64
-    // Use standard btoa - it works fine for JSON strings
-    const encoded = btoa(jsonString);
+    // Encode into Base64 and make it URL-safe
+    // Standard btoa can produce characters that need URL encoding
+    let encoded = btoa(jsonString);
 
-    // URL encode the Base64 string to handle special characters safely
-    const urlEncoded = encodeURIComponent(encoded);
+    // Make Base64 URL-safe by replacing characters that can cause issues
+    // Replace + with -, / with _, and remove = padding (we'll add it back when decoding)
+    encoded = encoded.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 
-    // Create shareable URL
-    const url = `${window.location.origin}/play.html?quiz=${urlEncoded}`;
+    // Create shareable URL (no need for encodeURIComponent since we made it URL-safe)
+    const url = `${window.location.origin}/play.html?quiz=${encoded}`;
 
     // Show output
     output.textContent =
