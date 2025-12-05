@@ -1,30 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Play Quiz</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Play Quiz</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="logo-map.js"></script>
+  </head>
 
-<body>
+  <body>
+    <h1 id="quizTitle"></h1>
 
-  <h1 id="quizTitle"></h1>
+    <div id="quiz-box">
+      <h2 id="question"></h2>
 
-  <div id="quiz-box">
-    <h2 id="question"></h2>
+      <div id="options"></div>
 
-    <div id="options"></div>
+      <button id="nextBtn" style="display: none">Next</button>
+    </div>
 
-    <button id="nextBtn" style="display:none;">Next</button>
-  </div>
+    <div id="result" style="display: none">
+      <h2>Your Score:</h2>
+      <p id="scoreText"></p>
+    </div>
 
-  <div id="result" style="display:none;">
-    <h2>Your Score:</h2>
-    <p id="scoreText"></p>
-  </div>
-
-  <script src="play.js"></script>
-
-</body>
+    <script src="play.js"></script>
+  </body>
 </html>

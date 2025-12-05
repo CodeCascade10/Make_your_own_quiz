@@ -33,23 +33,37 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      // Use shorter property names to reduce JSON size
       quizData.push({
-        question: questionText,
-        options: options,
-        correct: correctIndex
+        q: questionText,      // question
+        o: options,          // options
+        c: correctIndex      // correct
       });
     });
 
-    // Build final quiz object
+    // Build final quiz object with shorter property names
     const finalQuiz = {
-      owner: quizOwner,
-      questions: quizData
+      o: quizOwner,         // owner
+      qs: quizData          // questions
     };
 
-    // Encode into Base64
-    const encoded = btoa(JSON.stringify(finalQuiz));
+    // Minify JSON (no whitespace) to reduce size
+    const jsonString = JSON.stringify(finalQuiz);
 
-    // URL encode the Base64 string to handle special characters
+    // Validate JSON before encoding
+    try {
+      JSON.parse(jsonString);
+    } catch (e) {
+      alert("Error: Failed to create valid quiz data. Please try again.");
+      console.error("JSON validation error:", e);
+      return;
+    }
+
+    // Encode into Base64
+    // Use standard btoa - it works fine for JSON strings
+    const encoded = btoa(jsonString);
+
+    // URL encode the Base64 string to handle special characters safely
     const urlEncoded = encodeURIComponent(encoded);
 
     // Create shareable URL

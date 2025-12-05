@@ -16,34 +16,68 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Handle URL encoding issues - decode if needed
-    try {
-        // Try to decode URL-encoded characters first
-        encodedQuiz = decodeURIComponent(encodedQuiz);
-    } catch (e) {
-        // If already decoded, continue
-    }
+    // URLSearchParams.get() automatically decodes URL-encoded parameters
+    // So encodedQuiz should already be decoded and ready for Base64 decoding
+    // No additional decoding needed
 
     // 2. Decode Base64 → JSON with error handling
     let quizData;
     try {
-        const decoded = atob(encodedQuiz);
-        quizData = JSON.parse(decoded);
+        // Validate Base64 string before decoding
+        if (!encodedQuiz || encodedQuiz.trim() === '') {
+            throw new Error('Empty quiz data');
+        }
+
+        // Decode Base64
+        let decoded;
+        try {
+            decoded = atob(encodedQuiz);
+        } catch (base64Error) {
+            throw new Error(`Base64 decoding failed: ${base64Error.message}. The quiz link may be corrupted.`);
+        }
+
+        // Validate that we got a valid string
+        if (!decoded || decoded.trim() === '') {
+            throw new Error('Decoded data is empty');
+        }
+
+        // Parse JSON
+        try {
+            quizData = JSON.parse(decoded);
+        } catch (jsonError) {
+            // Log debugging information
+            console.error('JSON parse error:', jsonError);
+            console.error('Encoded quiz length:', encodedQuiz.length);
+            console.error('Decoded string length:', decoded.length);
+            console.error('Decoded string preview (first 200 chars):', decoded.substring(0, 200));
+            console.error('Decoded string ending (last 50 chars):', decoded.substring(Math.max(0, decoded.length - 50)));
+
+            // Check if the string appears truncated
+            if (!decoded.endsWith('}')) {
+                throw new Error(`JSON parsing failed: ${jsonError.message}. The quiz data appears to be truncated or corrupted. Please generate a new quiz link.`);
+            }
+            throw new Error(`JSON parsing failed: ${jsonError.message}. The quiz data may be corrupted.`);
+        }
     } catch (error) {
         console.error('Error parsing quiz data:', error);
         document.body.innerHTML = `
       <div style="text-align: center; padding: 40px; color: #e0e0e0;">
         <h1 style="color: #ff6b6b;">Error: Invalid Quiz Data</h1>
         <p>The quiz link appears to be corrupted or invalid.</p>
-        <p style="font-size: 12px; color: #888;">${error.message}</p>
-        <a href="index.html" style="color: #4a9eff; text-decoration: none;">← Back to Create Quiz</a>
+        <p style="font-size: 12px; color: #888; margin-top: 10px;">${error.message}</p>
+        <p style="font-size: 11px; color: #666; margin-top: 5px;">Please generate a new quiz link.</p>
+        <a href="index.html" style="color: #4a9eff; text-decoration: none; margin-top: 20px; display: inline-block;">← Back to Create Quiz</a>
       </div>
     `;
         return;
     }
 
+    // Support both shortened and full property names for backward compatibility
+    const owner = quizData.o || quizData.owner;
+    const questions = quizData.qs || quizData.questions;
+
     // Validate quiz data structure
-    if (!quizData.owner || !quizData.questions || !Array.isArray(quizData.questions)) {
+    if (!owner || !questions || !Array.isArray(questions)) {
         document.body.innerHTML = `
       <div style="text-align: center; padding: 40px; color: #e0e0e0;">
         <h1 style="color: #ff6b6b;">Error: Invalid Quiz Format</h1>
@@ -53,9 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
         return;
     }
-
-    const owner = quizData.owner;
-    const questions = quizData.questions;
 
     // Set quiz title
     document.getElementById("quizTitle").textContent = `${owner}'s Quiz`;
@@ -72,21 +103,42 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadQuestion() {
         const q = questions[current];
 
-        questionEl.textContent = q.question;
+        // Support both shortened and full property names
+        const questionText = q.q || q.question;
+        const options = q.o || q.options;
+        const correct = q.c !== undefined ? q.c : q.correct;
 
-        // Render the REAL options coming from index.html
+        questionEl.textContent = questionText;
+
+        // Render the REAL options coming from index.html with logos
+        const getLogoForOption = (optionName) => {
+            return getLogoPath(optionName);
+        };
+
         optionsEl.innerHTML = `
-        <button class="optBtn" data-id="0">${q.options[0]}</button>
-        <button class="optBtn" data-id="1">${q.options[1]}</button>
-        <button class="optBtn" data-id="2">${q.options[2]}</button>
-        <button class="optBtn" data-id="3">${q.options[3]}</button>
+        <button class="optBtn" data-id="0">
+          <img src="${getLogoForOption(options[0])}" alt="${options[0]}" class="option-logo">
+          <span>${options[0]}</span>
+        </button>
+        <button class="optBtn" data-id="1">
+          <img src="${getLogoForOption(options[1])}" alt="${options[1]}" class="option-logo">
+          <span>${options[1]}</span>
+        </button>
+        <button class="optBtn" data-id="2">
+          <img src="${getLogoForOption(options[2])}" alt="${options[2]}" class="option-logo">
+          <span>${options[2]}</span>
+        </button>
+        <button class="optBtn" data-id="3">
+          <img src="${getLogoForOption(options[3])}" alt="${options[3]}" class="option-logo">
+          <span>${options[3]}</span>
+        </button>
       `;
 
         document.querySelectorAll(".optBtn").forEach(btn => {
             btn.addEventListener("click", () => {
                 const selected = parseInt(btn.dataset.id);
 
-                if (selected === q.correct) {
+                if (selected === correct) {
                     btn.classList.add("correctBtn");
                     score++;
                 } else {

@@ -1,132 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Your Quiz App</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Your Quiz App</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="logo-map.js"></script>
+  </head>
 
-<body>
+  <body>
+    <h1>Create Your Quiz</h1>
 
-  <h1>Create Your Quiz</h1>
-
-  <!-- QUIZ OWNER NAME -->
-  <div id="quiz-name-box">
-    <label>Your Name (Quiz Owner):</label>
-    <input type="text" id="quizName" placeholder="Enter your name">
-  </div>
-
-  <div id="quiz-container">
-
-    <!-- QUESTION 1 -->
-    <div class="question-block">
-      <h3>What is my favorite food?</h3>
-
-      <div class="option"><input type="radio" name="correct1" value="0"> <span>Momo</span></div>
-      <div class="option"><input type="radio" name="correct1" value="1"> <span>Paneer</span></div>
-      <div class="option"><input type="radio" name="correct1" value="2"> <span>Pasta</span></div>
-      <div class="option"><input type="radio" name="correct1" value="3"> <span>Biryani</span></div>
+    <!-- QUIZ OWNER NAME -->
+    <div id="quiz-name-box">
+      <label>Your Name (Quiz Owner):</label>
+      <input type="text" id="quizName" placeholder="Enter your name" />
     </div>
 
-    <!-- QUESTION 2 -->
-    <div class="question-block">
-      <h3>Where would I love to travel?</h3>
+    <div id="quiz-container">
+      <!-- QUESTION 1 -->
+      <div class="question-block">
+        <h3>What is my favorite food?</h3>
 
-      <div class="option"><input type="radio" name="correct2" value="0"> <span>Mountain</span></div>
-      <div class="option"><input type="radio" name="correct2" value="1"> <span>Beach</span></div>
-      <div class="option"><input type="radio" name="correct2" value="2"> <span>Safari</span></div>
-      <div class="option"><input type="radio" name="correct2" value="3"> <span>Other</span></div>
+        <div class="option">
+          <input type="radio" name="correct1" value="0" />
+          <img src="assets/momo.svg" alt="Momo" class="option-logo" />
+          <span>Momo</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct1" value="1" />
+          <img src="assets/paneer.svg" alt="Paneer" class="option-logo" />
+          <span>Paneer</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct1" value="2" />
+          <img src="assets/pasta.svg" alt="Pasta" class="option-logo" />
+          <span>Pasta</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct1" value="3" />
+          <img src="assets/biryani.svg" alt="Biryani" class="option-logo" />
+          <span>Biryani</span>
+        </div>
+      </div>
+
+      <!-- QUESTION 2 -->
+      <div class="question-block">
+        <h3>Where would I love to travel?</h3>
+
+        <div class="option">
+          <input type="radio" name="correct2" value="0" />
+          <img src="assets/mountain.svg" alt="Mountain" class="option-logo" />
+          <span>Mountain</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct2" value="1" />
+          <img src="assets/beach.svg" alt="Beach" class="option-logo" />
+          <span>Beach</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct2" value="2" />
+          <img src="assets/safari.svg" alt="Safari" class="option-logo" />
+          <span>Safari</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct2" value="3" />
+          <img src="assets/other.svg" alt="Other" class="option-logo" />
+          <span>Other</span>
+        </div>
+      </div>
+
+      <!-- QUESTION 3 -->
+      <div class="question-block">
+        <h3>What is my favorite hobby?</h3>
+
+        <div class="option">
+          <input type="radio" name="correct3" value="0" />
+          <img src="assets/reading.svg" alt="Reading" class="option-logo" />
+          <span>Reading</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct3" value="1" />
+          <img src="assets/gaming.svg" alt="Gaming" class="option-logo" />
+          <span>Gaming</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct3" value="2" />
+          <img src="assets/scrolling.svg" alt="Scrolling" class="option-logo" />
+          <span>Scrolling</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct3" value="3" />
+          <img src="assets/youtube.svg" alt="YouTube" class="option-logo" />
+          <span>YouTube</span>
+        </div>
+      </div>
+
+      <!-- QUESTION 4 -->
+      <div class="question-block">
+        <h3>What do I love to read?</h3>
+
+        <div class="option">
+          <input type="radio" name="correct4" value="0" />
+          <img src="assets/fiction.svg" alt="Fiction" class="option-logo" />
+          <span>Fiction</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct4" value="1" />
+          <img src="assets/mystery.svg" alt="Mystery" class="option-logo" />
+          <span>Mystery</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct4" value="2" />
+          <img src="assets/comics.svg" alt="Comics" class="option-logo" />
+          <span>Comics</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct4" value="3" />
+          <img
+            src="assets/science-books.svg"
+            alt="Science Books"
+            class="option-logo"
+          />
+          <span>Science Books</span>
+        </div>
+      </div>
+
+      <!-- QUESTION 5 -->
+      <div class="question-block">
+        <h3>What do I love to watch?</h3>
+
+        <div class="option">
+          <input type="radio" name="correct5" value="0" />
+          <img src="assets/movies.svg" alt="Movies" class="option-logo" />
+          <span>Movies</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct5" value="1" />
+          <img src="assets/anime.svg" alt="Anime" class="option-logo" />
+          <span>Anime</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct5" value="2" />
+          <img
+            src="assets/web-series.svg"
+            alt="Web Series"
+            class="option-logo"
+          />
+          <span>Web Series</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct5" value="3" />
+          <img src="assets/cartoons.svg" alt="Cartoons" class="option-logo" />
+          <span>Cartoons</span>
+        </div>
+      </div>
+
+      <!-- QUESTION 6 -->
+      <div class="question-block">
+        <h3>What do I love to play?</h3>
+
+        <div class="option">
+          <input type="radio" name="correct6" value="0" />
+          <img src="assets/cricket.svg" alt="Cricket" class="option-logo" />
+          <span>Cricket</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct6" value="1" />
+          <img src="assets/football.svg" alt="Football" class="option-logo" />
+          <span>Football</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct6" value="2" />
+          <img src="assets/badminton.svg" alt="Badminton" class="option-logo" />
+          <span>Badminton</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct6" value="3" />
+          <img
+            src="assets/video-games.svg"
+            alt="Video Games"
+            class="option-logo"
+          />
+          <span>Video Games</span>
+        </div>
+      </div>
+
+      <!-- QUESTION 7 -->
+      <div class="question-block">
+        <h3>Which pet do I love the most?</h3>
+
+        <div class="option">
+          <input type="radio" name="correct7" value="0" />
+          <img src="assets/dog.svg" alt="Dog" class="option-logo" />
+          <span>Dog</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct7" value="1" />
+          <img src="assets/cat.svg" alt="Cat" class="option-logo" />
+          <span>Cat</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct7" value="2" />
+          <img src="assets/rabbit.svg" alt="Rabbit" class="option-logo" />
+          <span>Rabbit</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct7" value="3" />
+          <img src="assets/birds.svg" alt="Birds" class="option-logo" />
+          <span>Birds</span>
+        </div>
+      </div>
+
+      <!-- QUESTION 8 -->
+      <div class="question-block">
+        <h3>What do I love to wear?</h3>
+
+        <div class="option">
+          <input type="radio" name="correct8" value="0" />
+          <img src="assets/casuals.svg" alt="Casuals" class="option-logo" />
+          <span>Casuals</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct8" value="1" />
+          <img src="assets/formals.svg" alt="Formals" class="option-logo" />
+          <span>Formals</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct8" value="2" />
+          <img
+            src="assets/sportswear.svg"
+            alt="Sportswear"
+            class="option-logo"
+          />
+          <span>Sportswear</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct8" value="3" />
+          <img
+            src="assets/traditional.svg"
+            alt="Traditional"
+            class="option-logo"
+          />
+          <span>Traditional</span>
+        </div>
+      </div>
+
+      <!-- QUESTION 9 -->
+      <div class="question-block">
+        <h3>What do I love to drink?</h3>
+
+        <div class="option">
+          <input type="radio" name="correct9" value="0" />
+          <img src="assets/coffee.svg" alt="Coffee" class="option-logo" />
+          <span>Coffee</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct9" value="1" />
+          <img src="assets/tea.svg" alt="Tea" class="option-logo" />
+          <span>Tea</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct9" value="2" />
+          <img src="assets/juice.svg" alt="Juice" class="option-logo" />
+          <span>Juice</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct9" value="3" />
+          <img
+            src="assets/soft-drinks.svg"
+            alt="Soft Drinks"
+            class="option-logo"
+          />
+          <span>Soft Drinks</span>
+        </div>
+      </div>
+
+      <!-- QUESTION 10 -->
+      <div class="question-block">
+        <h3>What would I love to drive?</h3>
+
+        <div class="option">
+          <input type="radio" name="correct10" value="0" />
+          <img src="assets/car.svg" alt="Car" class="option-logo" />
+          <span>Car</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct10" value="1" />
+          <img src="assets/bike.svg" alt="Bike" class="option-logo" />
+          <span>Bike</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct10" value="2" />
+          <img src="assets/bicycle.svg" alt="Bicycle" class="option-logo" />
+          <span>Bicycle</span>
+        </div>
+        <div class="option">
+          <input type="radio" name="correct10" value="3" />
+          <img src="assets/scooter.svg" alt="Scooter" class="option-logo" />
+          <span>Scooter</span>
+        </div>
+      </div>
     </div>
 
-    <!-- QUESTION 3 -->
-    <div class="question-block">
-      <h3>What is my favorite hobby?</h3>
+    <button id="submitQuiz">Generate Quiz</button>
 
-      <div class="option"><input type="radio" name="correct3" value="0"> <span>Reading</span></div>
-      <div class="option"><input type="radio" name="correct3" value="1"> <span>Gaming</span></div>
-      <div class="option"><input type="radio" name="correct3" value="2"> <span>Scrolling</span></div>
-      <div class="option"><input type="radio" name="correct3" value="3"> <span>YouTube</span></div>
-    </div>
+    <pre id="output"></pre>
 
-    <!-- QUESTION 4 -->
-    <div class="question-block">
-      <h3>What do I love to read?</h3>
-
-      <div class="option"><input type="radio" name="correct4" value="0"> <span>Fiction</span></div>
-      <div class="option"><input type="radio" name="correct4" value="1"> <span>Mystery</span></div>
-      <div class="option"><input type="radio" name="correct4" value="2"> <span>Comics</span></div>
-      <div class="option"><input type="radio" name="correct4" value="3"> <span>Science Books</span></div>
-    </div>
-
-    <!-- QUESTION 5 -->
-    <div class="question-block">
-      <h3>What do I love to watch?</h3>
-
-      <div class="option"><input type="radio" name="correct5" value="0"> <span>Movies</span></div>
-      <div class="option"><input type="radio" name="correct5" value="1"> <span>Anime</span></div>
-      <div class="option"><input type="radio" name="correct5" value="2"> <span>Web Series</span></div>
-      <div class="option"><input type="radio" name="correct5" value="3"> <span>Cartoons</span></div>
-    </div>
-
-    <!-- QUESTION 6 -->
-    <div class="question-block">
-      <h3>What do I love to play?</h3>
-
-      <div class="option"><input type="radio" name="correct6" value="0"> <span>Cricket</span></div>
-      <div class="option"><input type="radio" name="correct6" value="1"> <span>Football</span></div>
-      <div class="option"><input type="radio" name="correct6" value="2"> <span>Badminton</span></div>
-      <div class="option"><input type="radio" name="correct6" value="3"> <span>Video Games</span></div>
-    </div>
-
-    <!-- QUESTION 7 -->
-    <div class="question-block">
-      <h3>Which pet do I love the most?</h3>
-
-      <div class="option"><input type="radio" name="correct7" value="0"> <span>Dog</span></div>
-      <div class="option"><input type="radio" name="correct7" value="1"> <span>Cat</span></div>
-      <div class="option"><input type="radio" name="correct7" value="2"> <span>Rabbit</span></div>
-      <div class="option"><input type="radio" name="correct7" value="3"> <span>Birds</span></div>
-    </div>
-
-    <!-- QUESTION 8 -->
-    <div class="question-block">
-      <h3>What do I love to wear?</h3>
-
-      <div class="option"><input type="radio" name="correct8" value="0"> <span>Casuals</span></div>
-      <div class="option"><input type="radio" name="correct8" value="1"> <span>Formals</span></div>
-      <div class="option"><input type="radio" name="correct8" value="2"> <span>Sportswear</span></div>
-      <div class="option"><input type="radio" name="correct8" value="3"> <span>Traditional</span></div>
-    </div>
-
-    <!-- QUESTION 9 -->
-    <div class="question-block">
-      <h3>What do I love to drink?</h3>
-
-      <div class="option"><input type="radio" name="correct9" value="0"> <span>Coffee</span></div>
-      <div class="option"><input type="radio" name="correct9" value="1"> <span>Tea</span></div>
-      <div class="option"><input type="radio" name="correct9" value="2"> <span>Juice</span></div>
-      <div class="option"><input type="radio" name="correct9" value="3"> <span>Soft Drinks</span></div>
-    </div>
-
-    <!-- QUESTION 10 -->
-    <div class="question-block">
-      <h3>What would I love to drive?</h3>
-
-      <div class="option"><input type="radio" name="correct10" value="0"> <span>Car</span></div>
-      <div class="option"><input type="radio" name="correct10" value="1"> <span>Bike</span></div>
-      <div class="option"><input type="radio" name="correct10" value="2"> <span>Bicycle</span></div>
-      <div class="option"><input type="radio" name="correct10" value="3"> <span>Scooter</span></div>
-    </div>
-
-  </div>
-
-  <button id="submitQuiz">Generate Quiz</button>
-
-  <pre id="output"></pre>
-
-  <script src="script.js"></script>
-
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
-
