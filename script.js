@@ -49,8 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Encode into Base64
     const encoded = btoa(JSON.stringify(finalQuiz));
 
+    // URL encode the Base64 string to handle special characters
+    const urlEncoded = encodeURIComponent(encoded);
+
     // Create shareable URL
-    const url = `${window.location.origin}/play.html?quiz=${encoded}`;
+    const url = `${window.location.origin}/play.html?quiz=${urlEncoded}`;
 
     // Show output
     output.textContent =
